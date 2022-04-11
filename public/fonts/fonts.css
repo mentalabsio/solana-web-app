@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "AvertaStd-Regular";
+  src: url("/fonts/AvertaStdRegular/font.woff2") format("woff2"),
+    url("/fonts/AvertaStdRegular/font.woff") format("woff");
+}
+@font-face {
+  font-family: "AvertaStd-Bold";
+  src: url("/fonts/AvertaStdBold/font.woff2") format("woff2"),
+    url("/fonts/AvertaStdBold/font.woff") format("woff");
+}
