@@ -18,7 +18,6 @@ const Header = () => {
         background: (theme) => theme.colors?.backgroundGradient,
         borderBottom: "1px solid",
         borderColor: "background2",
-        height: "7rem",
       }}
     >
       <Container>
@@ -26,8 +25,9 @@ const Header = () => {
           sx={{
             alignItems: "center",
             justifyContent: "space-between",
+            padding: "1.6rem",
+            height: "8rem",
           }}
-          p="1.6rem"
         >
           <Link href="/" passHref>
             <Flex as="a" sx={{ alignItems: "center", flexDirection: "column" }}>
@@ -65,7 +65,6 @@ const Header = () => {
                 left: "0",
                 width: "100vw",
                 height: "100vh",
-                padding: "1.6rem",
                 transition:
                   "opacity 0.125s cubic-bezier(0.175, 0.885, 0.32, 1.275),visibility 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
                 backgroundColor: "background",
@@ -92,17 +91,28 @@ const Header = () => {
               },
             }}
           >
-            <Button
+            <Flex
               sx={{
-                alignSelf: "flex-end",
-                padding: ".8rem",
-
-                ...(!isMobileMenuActive && { display: "none" }),
+                alignSelf: "stretch",
+                justifyContent: "flex-end",
+                borderBottom: "1px solid",
+                borderColor: "background2",
+                padding: "1.6rem",
+                height: "8rem",
+                alignItems: "center",
               }}
-              onClick={() => setIsMobileMenuActive(false)}
             >
-              <CloseIcon />
-            </Button>
+              <Button
+                sx={{
+                  padding: ".8rem",
+
+                  ...(!isMobileMenuActive && { display: "none" }),
+                }}
+                onClick={() => setIsMobileMenuActive(false)}
+              >
+                <CloseIcon />
+              </Button>
+            </Flex>
 
             <WalletManager />
           </Flex>
