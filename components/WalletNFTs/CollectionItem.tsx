@@ -1,7 +1,6 @@
 /** @jsxImportSource theme-ui */
 import React, { useRef, useState } from "react"
 import { Button, Flex, Text } from "theme-ui"
-import Link from "next/link"
 
 import { DotsIcon } from "@/components/icons/"
 import useOutsideClick from "@/hooks/useOutsideClick"
@@ -26,7 +25,7 @@ const CollectionItem = (props: Props) => {
 
   if (!item) return null
 
-  const { onChain, offChain } = item
+  const { onchainMetadata, externalMetadata } = item
 
   const handleOnClick = (item: NFT) => () => onClick ? onClick(item) : true
   const handleKeyDown =
@@ -111,10 +110,15 @@ const CollectionItem = (props: Props) => {
           boxShadow: "0px 4px 4px rgba(0,0,0,0.25)",
           gap: ".8rem",
           zIndex: 2,
+          fontSize: "1.2rem",
+
+          a: {
+            whiteSpace: "nowrap",
+          },
         }}
       >
         <a
-          href={onChain.metaData.data.data.uri}
+          href={onchainMetadata.data.uri}
           rel="noopener noreferrer"
           target="_blank"
           tabIndex={1}
@@ -122,7 +126,7 @@ const CollectionItem = (props: Props) => {
           View raw JSON
         </a>
         <a
-          href={offChain.image}
+          href={externalMetadata.image}
           rel="noopener noreferrer"
           target="_blank"
           tabIndex={1}
@@ -137,7 +141,7 @@ const CollectionItem = (props: Props) => {
           transition: "all .125s linear",
           opacity: isDropdownActive ? 0.7 : 1,
         }}
-        src={offChain.image}
+        src={externalMetadata.image}
       />
       <Text
         variant="small"
@@ -149,14 +153,14 @@ const CollectionItem = (props: Props) => {
           mt: ".8rem",
         }}
       >
-        {offChain.name}
+        {externalMetadata.name}
         {/* <br />
     <a
-      href={`https://solscan.io/token/${onChain.metaData.mint}`}
+      href={`https://solscan.io/token/${onchainMetadata.metaData.mint}`}
       target="_blank"
       rel="noopener noreferrer"
     >
-      {onChain.metaData.mint}
+      {onchainMetadata.metaData.mint}
     </a> */}
       </Text>
     </Flex>

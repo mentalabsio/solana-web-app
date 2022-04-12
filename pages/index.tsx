@@ -1,10 +1,9 @@
 /** @jsxImportSource theme-ui */
 import Head from "next/head"
-import Image from "next/image"
 
 import Header from "@/components/Header/Header"
-import WalletManager from "../components/WalletManager/WalletManager"
-import { Heading, Text } from "@theme-ui/components"
+import { Flex, Heading, Text } from "@theme-ui/components"
+import { WalletNFTs } from "@/components/WalletNFTs/WalletNFTs"
 
 export default function Home() {
   return (
@@ -29,6 +28,10 @@ export default function Home() {
           Solana Web App template
         </Heading>
         <Text>Quickstart template to build Solana web3 applications</Text>
+
+        <Flex my="3.2rem">
+          <WalletNFTs />
+        </Flex>
       </main>
 
       <footer
@@ -41,7 +44,7 @@ export default function Home() {
         }}
       >
         <a
-          href="https://github.com/magicshards"
+          href="https://twitter.com/magicshards"
           target="_blank"
           rel="noopener noreferrer"
           sx={{

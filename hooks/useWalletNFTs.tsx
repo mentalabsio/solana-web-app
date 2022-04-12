@@ -1,12 +1,14 @@
-import { web3 } from "@project-serum/anchor"
+import { PublicKey } from "@solana/web3.js"
 import { programs } from "@metaplex/js"
+import { useEffect, useState } from "react"
+import { getNFTsByOwner } from "utils/nfts"
+import { useConnection, useWallet } from "@solana/wallet-adapter-react"
 
 export type NFT = {
-  onChain: {
-    metaData: programs.metadata.Metadata
-    tokenAccount: web3.PublicKey
-  }
-  offChain: {
+  pubkey?: PublicKey
+  mint: PublicKey
+  onchainMetadata: programs.metadata.MetadataData
+  externalMetadata: {
     attributes: Array<any>
     collection: any
     description: string
@@ -23,6 +25,23 @@ export type NFT = {
   }
 }
 
-const useWalletNFTs = () => {}
+const useWalletNFTs = () => {
+  const { connection } = useConnection()
+  const { publicKey } = useWallet()
+  const [walletNFTs, setWalletNFTs] = useState<Array<NFT>>([])
+
+  useEffect(() => {
+    const fetchNFTs = async () => {
+      const NFTs = await getNFTsByOwner(publicKey, connection)
+      setWalletNFTs(NFTs)
+    }
+
+    if (publicKey) {
+      fetchNFTs()
+    }
+  }, [publicKey])
+
+  return { walletNFTs }
+}
 
 export default useWalletNFTs
