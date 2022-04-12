@@ -2,7 +2,7 @@
 
 import { Flex, Spinner, Text } from "@theme-ui/components"
 import useWalletNFTs from "@/hooks/useWalletNFTs"
-import CollectionItem from "@/components/WalletNFTs/CollectionItem"
+import CollectionItem from "@/components/NFTGallery/CollectionItem"
 import { useWallet } from "@solana/wallet-adapter-react"
 
 export type NFTCollectionProps = {}
@@ -10,7 +10,7 @@ export type NFTCollectionProps = {}
 /**
  * Component to displays all NFTs from a connected wallet
  */
-export function WalletNFTs(props: NFTCollectionProps) {
+export function NFTGallery(props: NFTCollectionProps) {
   const { publicKey } = useWallet()
   const { walletNFTs } = useWalletNFTs()
 
@@ -27,16 +27,17 @@ export function WalletNFTs(props: NFTCollectionProps) {
             <div
               sx={{
                 display: "grid",
-                gridTemplateColumns: walletNFTs.length > 1 ? "1fr 1fr" : "1fr",
+                gridTemplateColumns:
+                  walletNFTs.length > 1 ? "1fr 1fr 1fr 1fr" : "1fr",
                 gap: "1.6rem",
                 alignItems: "center",
 
                 "@media (min-width: 768px)": {
                   gridTemplateColumns:
                     walletNFTs.length > 9
-                      ? "1fr 1fr 1fr 1fr 1fr 1fr 1fr"
+                      ? "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
                       : walletNFTs.length > 4
-                      ? "1fr 1fr 1fr 1fr 1fr"
+                      ? "1fr 1fr 1fr 1fr 1fr 1fr"
                       : walletNFTs.map(() => "1fr").join(" "),
                 },
               }}
