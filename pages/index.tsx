@@ -5,9 +5,12 @@ import { Flex, Heading, Text } from "@theme-ui/components"
 
 import Header from "@/components/Header/Header"
 import { NFTGallery } from "@/components/NFTGallery/NFTGallery"
-import NFTSelector from "@/components/NFTSelector/NFTSelector"
+import NFTSelectInput from "@/components/NFTSelectInput/NFTSelectInput"
+import useWalletNFTs from "@/hooks/useWalletNFTs"
 
 export default function Home() {
+  const { walletNFTs } = useWalletNFTs()
+
   return (
     <>
       <Head>
@@ -63,7 +66,7 @@ export default function Home() {
             }}
           >
             <Heading variant="heading3">NFT Selector:</Heading>
-            <NFTSelector />
+            <NFTSelectInput name="nft" NFTs={walletNFTs} />
           </Flex>
         </Flex>
       </main>

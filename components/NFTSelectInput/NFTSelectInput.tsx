@@ -1,8 +1,9 @@
 /** @jsxImportSource theme-ui */
 
-import useWalletNFTs from "@/hooks/useWalletNFTs"
+import { NFT } from "@/hooks/useWalletNFTs"
+import { useWallet } from "@solana/wallet-adapter-react"
 import Select, { StylesConfig } from "react-select"
-import { useThemeUI, Flex } from "theme-ui"
+import { useThemeUI, Flex, Text } from "theme-ui"
 
 const SelectorNFTOptionLabel = ({
   imgSrc,
@@ -24,34 +25,43 @@ const SelectorNFTOptionLabel = ({
           maxHeight: "4.8rem",
         }}
       />
-      {name}
+      <Text mr="1.6rem">{name}</Text>
     </Flex>
   )
 }
 
-const NFTSelector = () => {
+const NFTSelectInput = ({
+  name,
+  NFTs = null,
+}: {
+  name: string
+  NFTs: NFT[]
+}) => {
+  const { publicKey } = useWallet()
   const { theme } = useThemeUI()
-  const { walletNFTs } = useWalletNFTs()
 
-  const options = walletNFTs.map((NFT) => ({
-    value: NFT.mint,
-    label: (
-      <SelectorNFTOptionLabel
-        imgSrc={NFT.externalMetadata.image}
-        name={NFT.onchainMetadata.data.name}
-      />
-    ),
-  }))
+  const options =
+    NFTs &&
+    NFTs.map((NFT) => ({
+      value: NFT.mint,
+      label: (
+        <SelectorNFTOptionLabel
+          imgSrc={NFT.externalMetadata.image}
+          name={NFT.onchainMetadata.data.name}
+        />
+      ),
+    }))
 
   const colourStyles: StylesConfig = {
     control: (styles) => ({
       ...styles,
       backgroundColor: theme?.colors.background.toString(),
+      minHeight: "6.4rem",
     }),
 
     container: (styles) => ({
       ...styles,
-      minWidth: "32rem",
+      minWidth: "22.4rem",
     }),
 
     menu: (styles) => ({
@@ -88,6 +98,25 @@ const NFTSelector = () => {
     }),
   }
 
-  return <Select options={options} styles={colourStyles} />
+  return (
+    <Select
+      key={"nftselect-" + options?.length}
+      name={name}
+      options={options || []}
+      styles={colourStyles}
+      placeholder={
+        <SelectorNFTOptionLabel
+          name={
+            publicKey
+              ? NFTs
+                ? "Select an NFT"
+                : "Loading NFTs..."
+              : "Connect your wallet."
+          }
+          imgSrc="https://via.placeholder.com/480x480"
+        />
+      }
+    />
+  )
 }
-export default NFTSelector
+export default NFTSelectInput
