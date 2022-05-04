@@ -74,12 +74,12 @@ export default function Home() {
       <footer
         sx={{
           display: "flex",
-          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          marginTop: "4rem",
+          margin: "4rem 0",
         }}
       >
+        Powered by{" "}
         <a
           href="https://twitter.com/magicshards"
           target="_blank"
@@ -89,7 +89,6 @@ export default function Home() {
             alignItems: "center",
           }}
         >
-          Powered by{" "}
           <Text
             variant="small"
             sx={{
@@ -101,7 +100,7 @@ export default function Home() {
               sx={{
                 height: "32px",
               }}
-              src="/magicshards.png"
+              src="/magicshards320px.gif"
               alt="Magic Shards"
               height={32}
             />
