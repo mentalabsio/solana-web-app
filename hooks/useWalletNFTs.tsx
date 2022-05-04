@@ -28,7 +28,7 @@ export type NFT = {
   }
 }
 
-const useWalletNFTs = (creators: string[]) => {
+const useWalletNFTs = (creators: string[] = []) => {
   const { connection } = useConnection()
   const { publicKey } = useWallet()
   const [walletNFTs, setWalletNFTs] = useState<Array<NFT> | null>(null)
