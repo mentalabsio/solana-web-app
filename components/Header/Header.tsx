@@ -4,10 +4,12 @@ import { Button, Container, Flex, Text } from "@theme-ui/components"
 
 import WalletManager from "@/components/WalletManager/WalletManager"
 import { useState } from "react"
-import { CloseIcon, MenuIcon } from "../icons"
+import { CloseIcon, MenuIcon, MoonLogo, SunLogo } from "../icons"
+import { useColorMode } from "theme-ui"
 
 const Header = () => {
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(false)
+  const [colorMode, setColorMode] = useColorMode()
 
   return (
     <Flex
@@ -113,7 +115,15 @@ const Header = () => {
                 <CloseIcon />
               </Button>
             </Flex>
-
+            {/* Change theme-ui color mode */}
+            <Button
+              variant="resetted"
+              onClick={(e) => {
+                setColorMode(colorMode === "default" ? "light" : "default")
+              }}
+            >
+              {colorMode === "default" ? <SunLogo /> : <MoonLogo />}
+            </Button>
             <WalletManager />
           </Flex>
           <Button

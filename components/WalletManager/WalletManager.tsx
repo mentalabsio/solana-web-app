@@ -2,6 +2,7 @@
 import { useWallet } from "@solana/wallet-adapter-react"
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
 import { Flex } from "theme-ui"
+import theme from "@/styles/theme"
 
 const WalletManager = () => {
   const wallet = useWallet()
@@ -48,7 +49,7 @@ const WalletManager = () => {
           <WalletMultiButton
             sx={{
               backgroundColor: "unset",
-              color: "heading",
+              color: (t) => t.rawColors?.text === theme.colors.text ? 'background' : 'text',
               lineHeight: "body",
               fontSize: "1.4rem",
               padding: ".8rem 1.6rem",

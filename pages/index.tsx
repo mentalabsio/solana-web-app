@@ -79,14 +79,15 @@ export default function Home() {
           margin: "4rem 0",
         }}
       >
-        Powered by{" "}
+        Powered by
         <a
-          href="https://twitter.com/magicshards"
+          href="https://twitter.com/mentaworks"
           target="_blank"
           rel="noopener noreferrer"
           sx={{
             display: "flex",
             alignItems: "center",
+            marginLeft: '0.2em'
           }}
         >
           <Text
@@ -96,15 +97,7 @@ export default function Home() {
               alignItems: "center",
             }}
           >
-            <img
-              sx={{
-                height: "32px",
-              }}
-              src="/magicshards320px.gif"
-              alt="Magic Shards"
-              height={32}
-            />
-            MagicShards
+            menta.works
           </Text>
         </a>
       </footer>
