@@ -1,15 +1,12 @@
 /** @jsxImportSource theme-ui */
 import Head from "next/head"
 
-import { Flex, Heading, Text } from "@theme-ui/components"
+import { Heading, Text } from "@theme-ui/components"
 
 import Header from "@/components/Header/Header"
-import { NFTGallery } from "@/components/NFTGallery/NFTGallery"
-import NFTSelectInput from "@/components/NFTSelectInput/NFTSelectInput"
-import useWalletNFTs from "@/hooks/useWalletNFTs"
 
 export default function Home() {
-  const { walletNFTs } = useWalletNFTs()
+
 
   return (
     <>
@@ -33,42 +30,6 @@ export default function Home() {
           Solana Web App template
         </Heading>
         <Text>Quickstart template to build Solana web3 applications</Text>
-        <hr
-          sx={{
-            margin: "3.2rem 0",
-          }}
-        />
-        <Text>Introducing:</Text>
-        <Text>&nbsp;&#8226;&nbsp; NFT Gallery</Text>
-        <Text>&nbsp;&#8226;&nbsp; NFT Selector</Text>
-
-        <Flex
-          my="3.2rem"
-          sx={{
-            flexDirection: "column",
-            gap: "1.6rem",
-          }}
-        >
-          <Flex
-            sx={{
-              flexDirection: "column",
-              gap: ".8rem",
-            }}
-          >
-            <Heading variant="heading3">NFT Gallery:</Heading>
-            <NFTGallery />
-          </Flex>
-
-          <Flex
-            sx={{
-              flexDirection: "column",
-              gap: ".8rem",
-            }}
-          >
-            <Heading variant="heading3">NFT Selector:</Heading>
-            <NFTSelectInput name="nft" NFTs={walletNFTs} />
-          </Flex>
-        </Flex>
       </main>
 
       <footer

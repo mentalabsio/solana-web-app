@@ -4,12 +4,15 @@ import { Button, Container, Flex, Text } from "@theme-ui/components"
 
 import WalletManager from "@/components/WalletManager/WalletManager"
 import { useState } from "react"
-import { CloseIcon, MenuIcon, MoonLogo, SunLogo } from "../icons"
+import { CloseIcon, MenuIcon, MoonLogo, ProfileLogo, SunLogo } from "../icons"
 import { useColorMode } from "theme-ui"
+import { useWindowSize } from "utils/useWindowSize"
+import { MenuItem } from "./MenuItem"
 
 const Header = () => {
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(false)
   const [colorMode, setColorMode] = useColorMode()
+  const windowSize = useWindowSize()
 
   return (
     <Flex
@@ -27,7 +30,7 @@ const Header = () => {
           sx={{
             alignItems: "center",
             justifyContent: "space-between",
-            padding: "1.6rem",
+            padding: "1.6rem 1.6rem 0",
             height: "8rem",
           }}
         >
@@ -56,6 +59,7 @@ const Header = () => {
               gap: "1.6rem",
               display: "none",
               alignItems: "center",
+              alignSelf: 'stretch',
 
               /** Mobile styles when the menu is active */
               ...(isMobileMenuActive && {
@@ -86,14 +90,12 @@ const Header = () => {
               "@media (min-width: 768px)": {
                 display: "flex",
                 flexDirection: "row",
-                width: "auto",
-                height: "auto",
                 padding: 0,
                 position: "relative",
               },
             }}
           >
-            <Flex
+            {windowSize.width < 1080 && <Flex
               sx={{
                 alignSelf: "stretch",
                 justifyContent: "flex-end",
@@ -114,16 +116,31 @@ const Header = () => {
               >
                 <CloseIcon />
               </Button>
-            </Flex>
+            </Flex>}
             {/* Change theme-ui color mode */}
-            <Button
-              variant="resetted"
-              onClick={(e) => {
-                setColorMode(colorMode === "default" ? "light" : "default")
-              }}
-            >
-              {colorMode === "default" ? <SunLogo /> : <MoonLogo />}
-            </Button>
+            <Flex sx={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              alignSelf: 'stretch',
+
+              "&:hover": {
+                borderBottomWidth: '1px',
+                borderBottomStyle: 'solid',
+                borderBottomColor: 'text'
+              }
+            }}>
+              <Button
+                variant="resetted"
+                onClick={(e) => {
+                  setColorMode(colorMode === "default" ? "light" : "default")
+                }}
+              >
+                {colorMode === "default" ? <SunLogo /> : <MoonLogo />}
+              </Button>
+            </Flex>
+            {/* Begin menu items */}
+            <MenuItem icon={<ProfileLogo />} href="/profile" />
+            {/* Finish menu items */}
             <WalletManager />
           </Flex>
           <Button

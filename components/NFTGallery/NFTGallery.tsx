@@ -76,7 +76,7 @@ export function NFTGallery(props: NFTCollectionProps) {
         >
           <Spinner variant="styles.spinnerLarge" />
         </Flex>
-      ) : null}
+      ) : publicKey ? <Text>No NFTs found.</Text> : <Text>Please connect your wallet.</Text>}
     </>
   )
 }

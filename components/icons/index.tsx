@@ -312,6 +312,34 @@ function MoonLogo() {
   )
 }
 
+function ProfileLogo() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        sx={{
+          stroke: "text",
+        }}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M23 18C23 19.074 22.1033 20.3156 20.0381 21.3482C18.0326 22.3509 15.1921 23 12 23C8.80787 23 5.96739 22.3509 3.96193 21.3482C1.89666 20.3156 1 19.074 1 18C1 16.926 1.89666 15.6844 3.96193 14.6518C5.96739 13.6491 8.80787 13 12 13C15.1921 13 18.0326 13.6491 20.0381 14.6518C22.1033 15.6844 23 16.926 23 18Z" stroke="black" stroke-width="2" />
+      <circle
+        sx={{
+          stroke: "text",
+        }}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        cx="12" 
+        cy="6" 
+        r="5"
+         stroke="black" 
+         stroke-width="2" />
+    </svg>
+
+  )
+}
+
 export {
   SolanaLogoMark,
   PlusSign,
@@ -320,5 +348,6 @@ export {
   DiscordIcon,
   TwitterIcon,
   SunLogo,
-  MoonLogo
+  MoonLogo,
+  ProfileLogo
 }
