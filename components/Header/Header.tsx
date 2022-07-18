@@ -6,13 +6,10 @@ import WalletManager from "@/components/WalletManager/WalletManager"
 import { useState } from "react"
 import { CloseIcon, MenuIcon, MoonLogo, ProfileLogo, SunLogo } from "../icons"
 import { useColorMode } from "theme-ui"
-import { useWindowSize } from "utils/useWindowSize"
-import { MenuItem } from "./MenuItem"
 
 const Header = () => {
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(false)
   const [colorMode, setColorMode] = useColorMode()
-  const windowSize = useWindowSize()
 
   return (
     <Flex
@@ -59,7 +56,7 @@ const Header = () => {
               gap: "1.6rem",
               display: "none",
               alignItems: "center",
-              alignSelf: 'stretch',
+              alignSelf: "stretch",
 
               /** Mobile styles when the menu is active */
               ...(isMobileMenuActive && {
@@ -95,7 +92,7 @@ const Header = () => {
               },
             }}
           >
-            {windowSize.width < 1080 && <Flex
+            <Flex
               sx={{
                 alignSelf: "stretch",
                 justifyContent: "flex-end",
@@ -104,31 +101,32 @@ const Header = () => {
                 padding: "1.6rem",
                 height: "8rem",
                 alignItems: "center",
+                ...(!isMobileMenuActive && { display: "none" }),
               }}
             >
               <Button
                 sx={{
                   padding: ".8rem",
-
-                  ...(!isMobileMenuActive && { display: "none" }),
                 }}
                 onClick={() => setIsMobileMenuActive(false)}
               >
                 <CloseIcon />
               </Button>
-            </Flex>}
+            </Flex>
             {/* Change theme-ui color mode */}
-            <Flex sx={{
-              alignItems: 'center',
-              justifyContent: 'center',
-              alignSelf: 'stretch',
+            <Flex
+              sx={{
+                alignItems: "center",
+                justifyContent: "center",
+                alignSelf: "stretch",
 
-              "&:hover": {
-                borderBottomWidth: '1px',
-                borderBottomStyle: 'solid',
-                borderBottomColor: 'text'
-              }
-            }}>
+                "&:hover": {
+                  borderBottomWidth: "1px",
+                  borderBottomStyle: "solid",
+                  borderBottomColor: "text",
+                },
+              }}
+            >
               <Button
                 variant="resetted"
                 onClick={(e) => {
@@ -138,8 +136,6 @@ const Header = () => {
                 {colorMode === "default" ? <SunLogo /> : <MoonLogo />}
               </Button>
             </Flex>
-            {/* Begin menu items */}
-            <MenuItem icon={<ProfileLogo />} href="/profile" />
             {/* Finish menu items */}
             <WalletManager />
           </Flex>
