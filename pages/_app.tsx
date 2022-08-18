@@ -25,6 +25,7 @@ function App(props: AppProps) {
     <ThemeProvider theme={defaultTheme}>
       <Head>
         {/** Load font styles directly on the document to prevent flashes */}
+        <title>Solana Web App</title>
         <link href="/fonts/fonts.css" rel="stylesheet" />
       </Head>
 
