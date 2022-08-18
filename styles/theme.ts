@@ -1,7 +1,6 @@
 import { Theme } from "theme-ui"
 
 import base from "./preset-base"
-import { reactTabsStyles } from "./react-tabs"
 
 export const getGradient = (rgb: string) => {
   /**
@@ -37,8 +36,8 @@ const theme: Theme = {
         primaryGradient: getGradient("rgb(145, 255, 200)"),
         heading: "#1E1E24",
         background2: "#1E1E24",
-        backgroundGradient: getGradient("rgb(226, 217, 211)")
-      }
+        backgroundGradient: getGradient("rgb(226, 217, 211)"),
+      },
     },
     error: "#B00020",
     success: "#5cb85c",
@@ -261,16 +260,6 @@ const theme: Theme = {
       ul: {
         paddingInlineStart: 0,
       },
-      ".slick-dots": {
-        "li button::before": {
-          color: "text",
-        },
-        "li.slick-active button::before": {
-          color: "text",
-        },
-      },
-
-      ...reactTabsStyles,
     },
 
     spinnerSmall: {

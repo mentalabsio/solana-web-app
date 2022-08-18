@@ -17,10 +17,11 @@ const useWalletNFTs = (creators: string[] = null) => {
   const fetchNFTs = useCallback(async () => {
     const metaplex = Metaplex.make(connection)
 
+    console.time("fetch")
     /** Fetch on-chain metadatas */
     const metadatas = await metaplex
       .nfts()
-      .findAllByOwner({ owner: publicKey })
+      .findAllByOwner({ owner: publicKey, commitment: "confirmed" })
       .run()
 
     /** Filter by creator */
@@ -40,6 +41,8 @@ const useWalletNFTs = (creators: string[] = null) => {
         metaplex.nfts().load({ metadata }).run()
       )
     )
+
+    console.timeEnd("fetch")
 
     setWalletNFTs(NFTs)
   }, [connection, publicKey])
