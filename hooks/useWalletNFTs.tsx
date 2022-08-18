@@ -28,13 +28,12 @@ export type NFT = {
   }
 }
 
-const useWalletNFTs = (creators: string[] = []) => {
+const useWalletNFTs = (creators: string[] = null) => {
   const { connection } = useConnection()
   const { publicKey } = useWallet()
   const [walletNFTs, setWalletNFTs] = useState<Array<NFT> | null>(null)
 
   const fetchNFTs = useCallback(async () => {
-    console.log("[useWalletNFTs] Fetching NFTs...")
     const NFTs = await getNFTsByOwner(publicKey, connection)
 
     const filtered = creators
