@@ -32,9 +32,9 @@ export default function Home() {
           margin: "4rem 0",
         }}
       >
-        Powered by
+        Created by
         <a
-          href="https://twitter.com/mentaworks"
+          href="https://github.com/mentalabsio"
           target="_blank"
           rel="noopener noreferrer"
           sx={{
@@ -50,7 +50,7 @@ export default function Home() {
               alignItems: "center",
             }}
           >
-            menta.works
+            Menta Labs
           </Text>
         </a>
       </footer>
