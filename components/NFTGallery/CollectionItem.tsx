@@ -4,12 +4,12 @@ import { Button, Flex, Text } from "theme-ui"
 
 import { DotsIcon } from "@/components/icons/"
 import useOutsideClick from "@/hooks/useOutsideClick"
-import { NFT } from "@/hooks/useWalletNFTs"
+import { FindNftByMintOutput } from "@metaplex-foundation/js"
 
 type Props = {
-  item: NFT
+  item: FindNftByMintOutput
   additionalOptions?: React.ReactElement
-  onClick?: (item: NFT) => void
+  onClick?: (item: FindNftByMintOutput) => void
   className?: string
 }
 
@@ -25,11 +25,12 @@ const CollectionItem = (props: Props) => {
 
   if (!item) return null
 
-  const { onchainMetadata, externalMetadata } = item
+  const { uri, json } = item
 
-  const handleOnClick = (item: NFT) => () => onClick ? onClick(item) : true
+  const handleOnClick = (item: FindNftByMintOutput) => () =>
+    onClick ? onClick(item) : true
   const handleKeyDown =
-    (item: NFT) => (e: React.KeyboardEvent<HTMLDivElement>) => {
+    (item: FindNftByMintOutput) => (e: React.KeyboardEvent<HTMLDivElement>) => {
       if (onClick && e.keyCode == 13) {
         onClick(item)
       }
@@ -117,16 +118,11 @@ const CollectionItem = (props: Props) => {
           },
         }}
       >
-        <a
-          href={onchainMetadata.data.uri}
-          rel="noopener noreferrer"
-          target="_blank"
-          tabIndex={1}
-        >
+        <a href={uri} rel="noopener noreferrer" target="_blank" tabIndex={1}>
           View raw JSON
         </a>
         <a
-          href={externalMetadata.image}
+          href={json.image}
           rel="noopener noreferrer"
           target="_blank"
           tabIndex={1}
@@ -141,7 +137,7 @@ const CollectionItem = (props: Props) => {
           transition: "all .125s linear",
           opacity: isDropdownActive ? 0.7 : 1,
         }}
-        src={externalMetadata.image}
+        src={json.image}
       />
       <Text
         variant="small"
@@ -153,7 +149,7 @@ const CollectionItem = (props: Props) => {
           mt: ".8rem",
         }}
       >
-        {externalMetadata.name}
+        {json.name}
         {/* <br />
     <a
       href={`https://solscan.io/token/${onchainMetadata.metaData.mint}`}

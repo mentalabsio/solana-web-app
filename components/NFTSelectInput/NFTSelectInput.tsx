@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import { NFT } from "@/hooks/useWalletNFTs"
+import { FindNftsByOwnerOutput } from "@metaplex-foundation/js"
 import { useWallet } from "@solana/wallet-adapter-react"
 import Select, { StylesConfig } from "react-select"
 import { useThemeUI, Flex, Text } from "theme-ui"
@@ -35,7 +35,7 @@ const NFTSelectInput = ({
   NFTs = null,
 }: {
   name: string
-  NFTs: NFT[]
+  NFTs: FindNftsByOwnerOutput
 }) => {
   const { publicKey } = useWallet()
   const { theme } = useThemeUI()
@@ -43,11 +43,11 @@ const NFTSelectInput = ({
   const options =
     NFTs &&
     NFTs.map((NFT) => ({
-      value: NFT.mint,
+      value: NFT.address.toString(),
       label: (
         <SelectorNFTOptionLabel
-          imgSrc={NFT.externalMetadata.image}
-          name={NFT.onchainMetadata.data.name}
+          imgSrc={NFT.json?.image}
+          name={NFT.json?.name}
         />
       ),
     }))

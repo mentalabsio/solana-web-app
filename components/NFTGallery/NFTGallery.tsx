@@ -45,7 +45,7 @@ export function NFTGallery(props: NFTCollectionProps) {
               {walletNFTs.map((item) => {
                 return (
                   <CollectionItem
-                    key={item.onchainMetadata.mint}
+                    key={item.address.toString()}
                     item={item}
                     sx={{
                       maxWidth: "8rem",
@@ -76,7 +76,11 @@ export function NFTGallery(props: NFTCollectionProps) {
         >
           <Spinner variant="styles.spinnerLarge" />
         </Flex>
-      ) : publicKey ? <Text>No NFTs found.</Text> : <Text>Please connect your wallet.</Text>}
+      ) : publicKey ? (
+        <Text>No NFTs found.</Text>
+      ) : (
+        <Text>Please connect your wallet.</Text>
+      )}
     </>
   )
 }

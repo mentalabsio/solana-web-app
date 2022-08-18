@@ -1,52 +1,47 @@
-import { PublicKey } from "@solana/web3.js"
-import { programs } from "@metaplex/js"
 import { useCallback, useEffect, useState } from "react"
-import { getNFTsByOwner } from "utils/nfts"
 import { useConnection, useWallet } from "@solana/wallet-adapter-react"
-
-export type NFT = {
-  pubkey?: PublicKey
-  mint: PublicKey
-  onchainMetadata: programs.metadata.MetadataData
-  externalMetadata: {
-    attributes: Array<any>
-    collection: any
-    description: string
-    edition: number
-    external_url: string
-    image: string
-    name: string
-    properties: {
-      files: Array<string>
-      category: string
-      creators: Array<{
-        pubKey: string
-        address: string
-      }>
-    }
-    seller_fee_basis_points: number
-  }
-}
+import {
+  Metaplex,
+  Metadata,
+  JsonMetadata,
+  FindNftByMintOutput,
+} from "@metaplex-foundation/js"
 
 const useWalletNFTs = (creators: string[] = null) => {
   const { connection } = useConnection()
   const { publicKey } = useWallet()
-  const [walletNFTs, setWalletNFTs] = useState<Array<NFT> | null>(null)
+  const [walletNFTs, setWalletNFTs] = useState<FindNftByMintOutput[] | null>(
+    null
+  )
 
   const fetchNFTs = useCallback(async () => {
-    const NFTs = await getNFTsByOwner(publicKey, connection)
+    const metaplex = Metaplex.make(connection)
 
-    const filtered = creators
-      ? NFTs.filter((NFT) => {
-          const obj = NFT.onchainMetadata?.data?.creators?.find((value) => {
-            return creators.indexOf(value.address) !== -1
+    /** Fetch on-chain metadatas */
+    const metadatas = await metaplex
+      .nfts()
+      .findAllByOwner({ owner: publicKey })
+      .run()
+
+    /** Filter by creator */
+    const filteredMetadatas = creators
+      ? metadatas.filter((NFT) => {
+          const obj = NFT.creators?.find((value) => {
+            return creators.indexOf(value.address.toString()) !== -1
           })
 
           return obj
         })
-      : NFTs
+      : metadatas
 
-    setWalletNFTs(filtered)
+    /** Fetch JSON for all on-chain metadatas */
+    const NFTs = await Promise.all(
+      filteredMetadatas.map(async (metadata: Metadata<JsonMetadata<string>>) =>
+        metaplex.nfts().load({ metadata }).run()
+      )
+    )
+
+    setWalletNFTs(NFTs)
   }, [connection, publicKey])
 
   useEffect(() => {
