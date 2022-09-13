@@ -31,7 +31,7 @@ export const LoadingIcon = ({ size = "2.4rem", className = "" }) => (
       transform="rotate(25.6557 50 50)"
       sx={{
         animation: `${rotate} 1.5s infinite linear`,
-        transformOrigin: "50px 50px"
+        transformOrigin: "50px 50px",
       }}
     ></circle>
   </svg>

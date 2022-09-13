@@ -49,7 +49,8 @@ const WalletManager = () => {
           <WalletMultiButton
             sx={{
               backgroundColor: "unset",
-              color: (t) => t.rawColors?.text === theme.colors.text ? 'background' : 'text',
+              color: (t) =>
+                t.rawColors?.text === theme.colors.text ? "background" : "text",
               lineHeight: "body",
               fontSize: "1.4rem",
               padding: ".8rem 1.6rem",
