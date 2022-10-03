@@ -28,17 +28,17 @@ const theme: Theme = {
     heading: "rgb(226, 217, 211)",
     background2: "#1E1E24",
     backgroundGradient: getGradient("rgb(24, 19, 19)"),
-    modes: {
-      light: {
-        background: "rgb(226, 217, 211)",
-        text: "rgb(24, 19, 19)",
-        primary: "rgb(145, 255, 200)",
-        primaryGradient: getGradient("rgb(145, 255, 200)"),
-        heading: "#1E1E24",
-        background2: "#1E1E24",
-        backgroundGradient: getGradient("rgb(226, 217, 211)"),
-      },
-    },
+    // modes: {
+    //   light: {
+    //     background: "rgb(226, 217, 211)",
+    //     text: "rgb(24, 19, 19)",
+    //     primary: "rgb(145, 255, 200)",
+    //     primaryGradient: getGradient("rgb(145, 255, 200)"),
+    //     heading: "#1E1E24",
+    //     background2: "#1E1E24",
+    //     backgroundGradient: getGradient("rgb(226, 217, 211)"),
+    //   },
+    // },
     error: "#B00020",
     success: "#5cb85c",
   },

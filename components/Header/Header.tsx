@@ -114,7 +114,7 @@ const Header = () => {
               </Button>
             </Flex>
             {/* Change theme-ui color mode */}
-            <Flex
+            {/* <Flex
               sx={{
                 alignItems: "center",
                 justifyContent: "center",
@@ -135,7 +135,7 @@ const Header = () => {
               >
                 {colorMode === "default" ? <SunLogo /> : <MoonLogo />}
               </Button>
-            </Flex>
+            </Flex> */}
             {/* Finish menu items */}
             <WalletManager />
           </Flex>

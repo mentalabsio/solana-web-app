@@ -2,7 +2,7 @@
 
 import { Flex, Spinner, Text } from "@theme-ui/components"
 import useWalletNFTs from "@/hooks/useWalletNFTs"
-import CollectionItem from "@/components/NFTGallery/CollectionItem"
+import CollectionItem from "@/components/NFTList/CollectionItem"
 import { useWallet } from "@solana/wallet-adapter-react"
 
 export type NFTCollectionProps = {}
@@ -10,7 +10,7 @@ export type NFTCollectionProps = {}
 /**
  * Component to displays all NFTs from a connected wallet
  */
-export function NFTGallery(props: NFTCollectionProps) {
+export function NFTList(props: NFTCollectionProps) {
   const { publicKey } = useWallet()
   const { walletNFTs } = useWalletNFTs()
 

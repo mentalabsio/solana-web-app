@@ -21,6 +21,7 @@ export default function Home() {
           maxWidth: "64rem",
           margin: "0 auto",
           marginTop: "4rem",
+          padding: "0 1.6rem",
         }}
       >
         <Heading mb=".8rem" variant="heading1">
@@ -32,7 +33,7 @@ export default function Home() {
           <li>Connect and manage your Solana wallet</li>
           <li>Fetch wallet NFTs</li>
           <li>Select component for NFTs</li>
-          <li>Gallery component for NFTs</li>
+          <li>List component for NFTs</li>
           <li>Mobile-first UI</li>
           <li>Easily change your theme on theme.ts file</li>
           <li>Google Analytics (UA) ready</li>
@@ -61,7 +62,7 @@ export default function Home() {
         ) : null}
       </main>
 
-      <footer
+      {/* <footer
         sx={{
           display: "flex",
           justifyContent: "center",
@@ -89,7 +90,7 @@ export default function Home() {
             Menta Labs
           </Text>
         </a>
-      </footer>
+      </footer> */}
     </>
   )
 }
